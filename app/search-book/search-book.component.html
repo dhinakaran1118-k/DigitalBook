@@ -1,0 +1,89 @@
+<div class="col-md-12">
+    <div class="card card-container" *ngIf="!isSearchSuccess">
+      <h3>Search books</h3>
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && onSearch()"
+        #f="ngForm"
+        novalidate
+      >
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          [(ngModel)]="searchForm.title"
+          />
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          class="form-control"
+          name="authorName"
+          [(ngModel)]="searchForm.authorName"
+          />
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input
+          type="text"
+          class="form-control"
+          name="category"
+          [(ngModel)]="searchForm.category"
+          />
+      </div>
+      <div class="form-group">
+        <label for="publisher">Publisher</label>
+        <input
+          type="text"
+          class="form-control"
+          name="publisher"
+          [(ngModel)]="searchForm.publisher"
+          />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">search</button>
+      </div>
+      
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isSearchFailed"
+        >
+          Search failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+    </div>
+    <div class="search-container" ng-app="Subsciptions App" ng-controller="Subsciptions controller" *ngIf="isSearchSuccess">
+      <br>
+      <h5>Books</h5>
+        <div class="book-container">
+            <div class="book-details-container"  (click)="onClick(book)"></div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Publisher</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let book of books">
+                  <tr>
+                    <td>{{book.title}}</td>
+                    <td>{{book.authorName}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.category}}</td>
+                    <td>{{book.publisher}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  </div>
+  

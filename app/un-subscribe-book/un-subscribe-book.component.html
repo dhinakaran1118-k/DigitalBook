@@ -1,0 +1,38 @@
+
+<div>
+    <form
+      *ngIf="!success"
+      name="form"
+      (ngSubmit)="f.form.valid && onUnSubscribeBook()"
+      #f="ngForm"
+      novalidate
+    >
+    <div class="form-group">
+        <label for="subscribedid">Subscribed Id</label>
+        <input
+          type="number"
+          class="form-control"
+          name="subscribedid"
+          [(ngModel)]="info.subscribedid"
+          required
+          #title="ngModel"
+        />
+        <div class="alert-danger" *ngIf="title.errors && f.submitted">
+          <div *ngIf="title.errors.required">Subscribed Id is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">UnSubscribe The Book</button>
+    </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && !success">
+        Book UnSubscription is failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="success">
+       Book UnSubscription is Done.
+    </div>
+
+</div>
